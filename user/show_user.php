@@ -7,6 +7,8 @@ $stmt = $pdo->query('select * from table_name');
 
 $users = $stmt->fetchAll();
 
+echo '<a href="create_user.php">Create</a><br><br>';
+
 echo '<table>';
 echo '<tr>';
 echo '<th>first name</th>';
