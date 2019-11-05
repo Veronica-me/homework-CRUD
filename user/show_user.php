@@ -1,11 +1,14 @@
 <?php
-require_once '../src/database/Connection.php';
 
-$pdo = App\database\Connection::createConnect();
+require_once '../load.php';
 
-$stmt = $pdo->query('select * from table_name');
+$userReposirtory = new \App\repositories\UserRepository();
+$userPhone = new \App\repositories\PhoneRepository();
+$users = $userReposirtory->getList();
+//$userNumner = $userPhone->getPhone('1');
 
-$users = $stmt->fetchAll();
+$usersPhones = $userPhone->getPhone();
+
 
 echo '<a href="create_user.php">Create</a><br><br>';
 
@@ -15,19 +18,20 @@ echo '<th>first name</th>';
 echo '<th>last name</th>';
 echo '<th>email</th>';
 echo '<th>phone_id</th>';
+echo '<th>phone_number</th>';
 echo '<th>create</th>';
 echo '<th>action</th>';
 echo '</tr>';
 
 
-foreach ($users as $user){
-
+foreach ($usersPhones as $user){
 
     echo '<tr>';
     echo '<th>' .$user['name_1'].'</th>';
     echo '<th>' .$user['name_2'].'</th>';
     echo '<th>' .$user['email'].'</th>';
     echo '<th>' .$user['phone_id'].'</th>';
+    echo '<th>' .$user['phone_number'].'</th>';
     echo '<th>' .$user['create_id'].'</th>';
     echo '<th><a href="update_user.php?id='.$user['id'].'">edit</th>';
     echo '<th><a href="delete_user.php?id='.$user['id'].'">delete</th>';
