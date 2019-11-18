@@ -21,3 +21,4 @@ foreach ($phoneArr as $value){
 
     echo '</tr>';
 }
+echo '</table>';
